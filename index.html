@@ -3,9 +3,10 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <title>xbx</title>
 
-  <script src="https://preview.babylonjs.com/babylon.max.js"></script>
+  <!-- <script src="https://preview.babylonjs.com/babylon.max.js"></script> -->
+  <script src="js/babylon.max.js"></script>
   <script src="js/webmidi.js"></script>
-    <script src="js/webmidi-three.js"></script>
+    <script src="js/webmidiSetup.js"></script>
 
   <style>
     html, body {
@@ -116,7 +117,7 @@ var postProcess;
                 uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
             });
 
-        var refTexture = new BABYLON.Texture("/textures/internalFlesh1024Po2.jpg", scene);
+        var refTexture = new BABYLON.Texture("/textures/internalFlesh2048Po2.jpg", scene);
         refTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
         refTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
 
@@ -130,16 +131,19 @@ var postProcess;
         object1.material = shaderMaterial;
         object1.position = new BABYLON.Vector3(0, 0, 0);
 
+        scene.registerBeforeRender( function( ) {
+          object1.rotation.x = cc1 * 0.02;
+          object1.rotation.y = cc1 * 0.005;
+          // object1.scale.y = cc1 * 0.007
+        } );
+
         return scene;
       }
-
-
-
 
         scene = createScene( );
         engine.runRenderLoop( function( ) {
 
-        object1.rotation.y += fade1;
+
 
           scene.render( );
         } );
