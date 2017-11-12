@@ -35,7 +35,7 @@
 
 var canvas, engine, scene, camera, createScene;
 var object1, scene;
-var postProcess;
+var cc1 = 0;
 
     window.addEventListener('DOMContentLoaded', function() {
 
@@ -47,6 +47,7 @@ var postProcess;
         scene = new BABYLON.Scene( engine );
         scene.clearColor = new BABYLON.Color3.Black( );
         camera = new BABYLON.ArcRotateCamera("Camera", 0, Math.PI / 1.3, 12, BABYLON.Vector3.Zero(), scene);
+        camera.inertia = 0
         camera.attachControl(canvas, true);
         // camera.minZ = 1.0;
         // var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
